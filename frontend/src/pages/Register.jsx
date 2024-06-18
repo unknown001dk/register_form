@@ -10,13 +10,10 @@ function Register() {
       [e.target.id]: e.target.value
     })
   }
-  console.log(formData)
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       setLoading(true);
-
-  
       const res = await fetch('/api/users/create' ,{
         method: 'POST',
         headers: {
@@ -24,7 +21,6 @@ function Register() {
         },
         body: JSON.stringify(formData)
       });
-      // console.log(res);
       const data = await res.json();
       console.log(data);
       setLoading(false);  
