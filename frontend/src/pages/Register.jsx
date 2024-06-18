@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function Register() {
   const [formData, setFormData] = useState();
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -24,6 +26,7 @@ function Register() {
       const data = await res.json();
       console.log(data);
       setLoading(false);  
+      navigate('/success-form');
     } catch (error) {
       setLoading(false);
       console.log(error);
