@@ -5,7 +5,6 @@ import { toastError, toastInfo, toastSuccess } from '../utils/Toast';
 function Register() {
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(false);
-  // const [validationmessage, setValidationMessage] = useState({});
 
   const navigate = useNavigate();
 
@@ -29,16 +28,21 @@ function Register() {
       });
       const data = await res.json();
       const message = data.message;
-      if(res.success = true) {
+      const statusCode = data.status;
+
+      if(statusCode === 201) {
         toastSuccess(message);
         navigate('/success-form');
-      } else {
-        toastError('Something went wrong. Please try again later.');
+      } else if(statusCode === 404) {
+        toastError('Invaild details');
+      } else if(statusCode === 400) {
+        toastError(message);
       }
       setLoading(false);  
     } catch (error) {
       setLoading(false);
       console.log(error);
+      toastError(res.message);
     }
   } 
   
@@ -51,20 +55,22 @@ function Register() {
         className='bg-slate-100 p-3 rounded-lg'
         type="text"
         placeholder='Username'
-        id='name' />
+        id='name'
+        required />
       <input
         onChange={handleChange}
         className='bg-slate-100 p-3 rounded-lg'
         type="email"
         placeholder='Email'
-        id='email' />
+        id='email' 
+        required />
 
       <input
         onChange={handleChange}
         className='bg-slate-100 p-3 rounded-lg'
         placeholder='Phonenumber'
         id='phonenumber'
-        />
+        required />
 
         <button
           type='submit'
