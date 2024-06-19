@@ -114,7 +114,6 @@ function Register() {
         type="text"
         placeholder='Username'
         id='name' />
-        {<span>{{message}}</span>}
       <input
         onChange={handleChange}
         className='bg-slate-100 p-3 rounded-lg'
