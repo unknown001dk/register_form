@@ -66,10 +66,12 @@ function Register() {
         required />
 
       <input
+        type='tel'
         onChange={handleChange}
         className='bg-slate-100 p-3 rounded-lg'
         placeholder='Phonenumber'
         id='phonenumber'
+        pattern="[0-9]{5}[0-9]{5}"
         required />
 
         <button
