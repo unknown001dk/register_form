@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node ./Api/index.js",
-    "dev": "nodemon ./Api/index.js"
+    "dev": "nodemon ./Api/index.js",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "keywords": [],
   "author": "",

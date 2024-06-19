@@ -13,13 +13,5 @@ export const toastInfo = async (message) => {
 };
 
 export const toastWarning = async (message) => {
-  toast.warning(message, {
-    position: toast.POSITION.TOP_CENTER,
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-  });
+  toast.warning(message);
 };
