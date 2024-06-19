@@ -11,7 +11,7 @@ export const Login = async(req, res) => {
   try {
     await newUser.save()
     return res.status(201).json({
-      message: "User created successfully",
+      message: "Form submitted successfully",
       success: true, 
     })
   } catch (error) {

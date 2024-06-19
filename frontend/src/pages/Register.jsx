@@ -1,13 +1,11 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify';
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css'
+import { toastError, toastInfo, toastSuccess } from '../utils/Toast';
 
 function Register() {
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(false);
-  // const [validationMessage, setValidationMessage] = useState({});
+  const [validationmessage, setValidationMessage] = useState({});
 
   const navigate = useNavigate();
 
@@ -15,6 +13,37 @@ function Register() {
     setFormData({
       ...formData,
       [e.target.id]: e.target.value
+    })
+  }
+
+  const validationMessage = (e) => {
+    const { name, email, phonenumber } = formData;
+
+    let message = '';
+    if (name === '')  {
+      message = 'Name is required';
+    } else if (value.length < 2) {
+      message = 'Name must be at least 2 characters';
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^\d{10}$/;
+
+    if ( email === '') {
+      message = 'Email is required';
+    } else if (!emailRegex.test(value)) {
+      message = 'Invalid email address'
+    }
+
+    if (phonenumber === '') {
+      message = 'Phonenumber is required';
+    } else if (!phoneRegex.test(value)) {
+      message = 'Phone number must be 10 digits long';
+    }
+    return message;
+    setValidationMessage({
+      ...validationMessage,
+      [name] : message
     })
   }
 
@@ -44,16 +73,13 @@ function Register() {
         message = 'Valid phone number.';
       }
     }
-
-    setValidationMessage({
-      ...validationMessage,
-      [name] : message
-    })
-
+    return message;
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    validationMessage(e);
+  
     try {
       setLoading(true);
       const res = await fetch('/api/users/create' ,{
@@ -64,20 +90,20 @@ function Register() {
         body: JSON.stringify(formData)
       });
       const data = await res.json();
-      // console.log(data);
+      const message = data.message;
       if(res.success = true) {
-        toast.success('User created successfully');
+        toastSuccess(message);
+        navigate('/success-form');
       } else {
-        toast.error('Something went wrong. Please try again later.');
+        toastError('Something went wrong. Please try again later.');
       }
       setLoading(false);  
-      navigate('/success-form');
     } catch (error) {
       setLoading(false);
       console.log(error);
     }
-  }
-
+  } 
+  
   return (
     <div className='p-3 max-w-lg mx-auto bg-slate-50 rounded-md shadow-xl mt-48 shadow-yellow-100/40 md:mt-40'>
     <h1 className='text-3xl text-center font-semibold my-7'>Register Form</h1>
@@ -88,6 +114,7 @@ function Register() {
         type="text"
         placeholder='Username'
         id='name' />
+        {<span>{{message}}</span>}
       <input
         onChange={handleChange}
         className='bg-slate-100 p-3 rounded-lg'
