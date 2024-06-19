@@ -9,9 +9,8 @@ export const Login = async(req, res) => {
     phonenumber,
   });
   try {
-
     await newUser.save()
-    res.status(201).json({
+    return res.status(201).json({
       message: "User created successfully",
       success: true, 
     })
