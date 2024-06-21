@@ -6,9 +6,9 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-  return (  
+  return (
     <BrowserRouter>
-        <ToastContainer />
+      <ToastContainer />
       <Routes>
         <Route path='/' element={<Register />}/>
         <Route path='/success-form' element={<SuccessForm />}/>
