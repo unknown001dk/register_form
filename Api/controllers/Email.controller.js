@@ -1,51 +1,6 @@
 import nodemailer from 'nodemailer';
 import Mailgen from 'mailgen';
 
-// test case
-export const emailController = async(req, res) => {
-  // const { email } = req.body;
-
-
-  let transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
-    port: 587,
-    secure: false,
-    auth: {
-      user: "maddison53@ethereal.email",
-      pass:  "jn7jnAPss4f63QBp6D"
-    },
-    tls: {
-      rejectUnauthorized: false
-    }
-  });
-
-  let message = {
-    from: '"Maddison Foo Koch 👻" <maddison53@ethereal.email>', // sender address
-    to: "bar@example.com, baz@example.com", // list of receivers
-    subject: "Hello ✔", // Subject line
-    text: "Hello world?", // plain text body
-    html: "<b>Hello world?</b>",
-  } 
-  
-  transporter.sendMail(message).then((info) => {
-    return res.status(200).json({
-      message: 'Email sent',
-      success: true,
-      status: 200,
-      info: info.messageId,
-      preview: nodemailer.getTestMessageUrl(info)
-    })
-  }).catch (error => {
-    console.log(error);
-    return res.status(400).json({
-      message: 'Email not sent',
-      success: false,
-      status: 400,
-      error
-    })
-  }) 
-};
-
 export const sendEmail = async(req, res) => {
   const { email, name } = req.body;
 
@@ -55,9 +10,9 @@ export const sendEmail = async(req, res) => {
       user: process.env.GMAIL_USER,
       pass:  process.env.GMAIL_PASS,
     },
-    // tls: {
-    //   rejectUnauthorized: false
-    // }
+    tls: {
+      rejectUnauthorized: false
+    }
   }
   let transporter = nodemailer.createTransport(config);
 

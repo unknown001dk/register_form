@@ -1,7 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import userRoutes from './routes/User.route.js';
-import mailRoutes from './routes/Email.route.js';
 import { connectDB } from './config/db.js';
 import path from 'path';
 
@@ -16,7 +15,6 @@ app.get('*', (req, res) => {
 });
 
 app.use('/api/users', userRoutes);
-// app.use('/api/users/mail', mailRoutes);
 
 const port = process.env.PORT || 5000;
 connectDB();
