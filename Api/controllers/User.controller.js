@@ -3,6 +3,8 @@ import { sendEmail } from './Email.controller.js';
 
 export const Login = async(req, res) => {
   const { name, email, phonenumber} = req.body;
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+  const phoneRegex = /^[0-9]{10}$/;
 
   if (!name || !email || !phonenumber) {
     return res.status(400).json({
@@ -10,9 +12,13 @@ export const Login = async(req, res) => {
       success: false,
       status: 400
     });
-  }
-
-  if (phonenumber.length > 10 || phonenumber.length < 10) {
+  } else if (!emailRegex.test(email)) {
+    return res.status(400).json({
+      message: "Invalid email",
+      success: false,
+      status: 400
+    });
+  } else if (!phoneRegex.test(phonenumber)) {
     return res.status(400).json({
       message: "Invalid phonenumber",
       success: false,
