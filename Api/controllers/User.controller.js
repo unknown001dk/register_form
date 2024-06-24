@@ -4,6 +4,22 @@ import { sendEmail } from './Email.controller.js';
 export const Login = async(req, res) => {
   const { name, email, phonenumber} = req.body;
 
+  if (!name || !email || !phonenumber) {
+    return res.status(400).json({
+      message: "All fields are required",
+      success: false,
+      status: 400
+    });
+  }
+
+  if (phonenumber.length > 10 || phonenumber.length < 10) {
+    return res.status(400).json({
+      message: "Invalid phonenumber",
+      success: false,
+      status: 400
+    });
+  }
+
   if (email) {
     const user = await User.findOne({ email });
     if (user) {
@@ -22,13 +38,13 @@ export const Login = async(req, res) => {
   });
 
   try {
-  await newUser.save()
-  sendEmail(req, res);
-  return res.status(201).json({
-    message: "Form submitted successfully",
-    success: true, 
-    status: 201
-  })
+    await newUser.save()
+    sendEmail(req, res);
+    return res.status(201).json({
+      message: "Form submitted successfully",
+      success: true, 
+      status: 201
+    })
   } catch (error) {
     console.log(error);
   }

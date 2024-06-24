@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom"
+import { PageTitle } from "../components/pageTitle"
 
 function SuccessForm() {
   return (
     <>
+    <PageTitle title="Sucess Form" />
     <div className="flex justify-center items-center mt-40">
       <div className="bg-gray-100">
         <div className="bg-white p-6  md:mx-auto">

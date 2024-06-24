@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { toastError, toastInfo, toastSuccess } from '../utils/Toast';
+import { toastError, toastSuccess } from '../utils/Toast';
 import BounceLoader from 'react-spinners/BounceLoader'
+import { PageTitle } from '../components/pageTitle';
 
 function Register() {
   const [formData, setFormData] = useState({});
@@ -36,14 +37,12 @@ function Register() {
       });
       const data = await res.json();
       const message = data.message;
-      const statusCode = data.status;
+      const success = data.success;
 
-      if(statusCode === 201) {
+      if(success === true) {
         toastSuccess(message);
         navigate('/success-form');
-      } else if(statusCode === 404) {
-        toastError('Invaild details');
-      } else if(statusCode === 400) {
+      } else {
         toastError(message);
       }
       setLoading(false);  
@@ -56,6 +55,7 @@ function Register() {
   
   return (
     <div>
+      <PageTitle title="Register Form" />
       {
         loader ? (
           <div className='flex justify-center items-center h-screen'>
@@ -71,14 +71,14 @@ function Register() {
                 type="text"
                 placeholder='Username'
                 id='name'
-                required />
+                />
               <input
                 onChange={handleChange}
                 className='bg-slate-100 p-3 rounded-lg'
                 type="email"
                 placeholder='Email'
                 id='email' 
-                required />
+                />
 
               <input
                 type='tel'
@@ -86,8 +86,8 @@ function Register() {
                 className='bg-slate-100 p-3 rounded-lg'
                 placeholder='Phonenumber'
                 id='phonenumber'
-                pattern="[0-9]{5}[0-9]{5}"
-                required />
+                // pattern="[0-9]{5}[0-9]{5}"
+                />
 
                 <button
                   type='submit'

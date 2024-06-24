@@ -9,6 +9,9 @@ export const sendEmail = async(req, res) => {
     auth: {
       user: process.env.GMAIL_USER,
       pass:  process.env.GMAIL_PASS,
+    },
+    tls: {
+      rejectUnauthorized: false,
     }
   }
   let transporter = nodemailer.createTransport(config);
@@ -24,15 +27,15 @@ export const sendEmail = async(req, res) => {
   let response = {
     body: {
       name: name,
-      intro: 'Thank you for registering with us',
-      action: {
-        instructions: 'To complete your registration, please click the button below:',
-        button: {
-          color: '#22BC66',
-          text: 'Complete Registration',
-          link: 'https://noname-maw3.onrender.com/',
-        },
-      },
+      intro: 'Thank you for registering with us, We are thrilled to have you as a part of our community. Your registration was successful, and you are now a valued member of our platform.',
+      // action: {
+      //   instructions: 'To complete your registration, please click the button below:',
+      //   button: {
+      //     color: '#22BC66',
+      //     text: 'Thanks',
+      //     // link: 'https://noname-maw3.onrender.com/',
+      //   },
+      // },
       outro: 'Need help, or have questions? Just reply to this email, we\'d love to help.',
     },
   }
