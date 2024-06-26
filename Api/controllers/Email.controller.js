@@ -49,7 +49,7 @@ export const scheduleEmail = async(req, res) => {
   const userInfo = await User.find({});
 
   const mail = userInfo[0];
-  cron.schedule(" 0 45 21 * * *", () => {
+  cron.schedule(" 0 50 21 * * *", () => {
     for (let mail = 0; mail < userInfo.length; mail++) {
       const data = userInfo[mail];
       const name = data.name;
@@ -97,7 +97,7 @@ export const scheduleEmail = async(req, res) => {
       }
     
       transporter.sendMail(message).then(() => {
-        return res.status(201)
+        // return res.status(201)
       })
     }
   }, {
