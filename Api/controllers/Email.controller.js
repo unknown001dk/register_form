@@ -49,7 +49,7 @@ export const scheduleEmail = async(req, res) => {
   const userInfo = await User.find({});
 
   const mail = userInfo[0];
-  cron.schedule(" 0 50 21 * * *", () => {
+  cron.schedule(" 0 30 19 * * *", () => {
     for (let mail = 0; mail < userInfo.length; mail++) {
       const data = userInfo[mail];
       const name = data.name;
@@ -97,22 +97,11 @@ export const scheduleEmail = async(req, res) => {
       }
     
       transporter.sendMail(message).then(() => {
-        // return res.status(201)
+        
       })
     }
   }, {
     scheduled: true,
     timezone: "Asia/Kolkata"
   })
-  
-  // console.log(mail.name);
-
-  // return res.status(200).json({
-  //   message: "Email scheduled successfully",
-  //   success: true,
-  //   status: 200,
-  //   data: {
-  //     email: email
-  //   }
-  // })
 };
