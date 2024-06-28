@@ -49,7 +49,7 @@ export const scheduleEmail = async(req, res) => {
   const userInfo = await User.find({});
 
   const mail = userInfo[0];
-  cron.schedule(" 0 20 19 * * *", () => {
+  cron.schedule(" 0 15 21 * * *", () => {
     for (let mail = 0; mail < userInfo.length; mail++) {
       const data = userInfo[mail];
       const name = data.name;
@@ -75,13 +75,13 @@ export const scheduleEmail = async(req, res) => {
       let response = {
         body: {
           name: name,
-          intro: 'This is a reminder that our online class is scheduled to begin at 7:30 PM tonight. Please ensure you are prepared and logged in a few minutes before the start time to avoid any delays.',
+          intro: 'Testing the mail from the main server',
           action: {
             instructions: 'To join the class, please click the button to join the class',
             button: {
               color: '#22BC66',
               text: 'Join Now',
-              link: 'https://meet.google.com/rhm-jedy-frc',
+              //link: 'https://meet.google.com/rhm-jedy-frc',
             }
           },
           outro: 'Need help, or have questions? Just reply to this email, we\'d love to help.',
