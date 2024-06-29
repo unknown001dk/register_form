@@ -81,7 +81,7 @@ export const scheduleEmail = async(req, res) => {
             button: {
               color: '#22BC66',
               text: 'Join Now',
-              //link: 'https://meet.google.com/rhm-jedy-frc',
+              link: 'https://meet.google.com/rhm-jedy-frc',
             }
           },
           outro: 'Need help, or have questions? Just reply to this email, we\'d love to help.',
