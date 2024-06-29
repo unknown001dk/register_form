@@ -4,6 +4,7 @@ import userRoutes from './routes/User.route.js';
 import { connectDB } from './config/db.js';
 import path from 'path';
 import { scheduleEmail } from './controllers/Email.controller.js';
+import cron from 'node-cron';
 
 const __dirname = path.resolve();
 
@@ -19,7 +20,13 @@ app.use('/api/users', userRoutes);
 
 const port = process.env.PORT || 5000;
 connectDB();
-scheduleEmail();
+
+cron.schedule('0 20 10 * * *', () => {
+  scheduleEmail();
+});
+
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
+  scheduleEmail();
 });
