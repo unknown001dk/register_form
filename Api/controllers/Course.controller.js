@@ -49,7 +49,7 @@ export const courseRegister = async(req, res) => {
     await newCourse.save();
     CourseRegmail(req, res);
     return res.json({
-      message: "Course registration successful",
+      message: "Course registration successfully",
       success: true,
       status: 200
     });  

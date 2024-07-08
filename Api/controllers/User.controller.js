@@ -7,22 +7,23 @@ import { UserRegmail } from "./Email.controller.js";
 export const userRegister = async(req, res) => {
   const { name, email, password } = req.body;
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
-  const hashedPassword = bcrypt.hashSync(password, 10);
-
+  
   if (!name || !email || !password) {
     return res.status(400).json({
       message: "All fields are required",
       success: false,
       status: 400
     });
-  } else if (!emailRegex.test(email)) {
+  } 
+  
+  if (!emailRegex.test(email)) {
     return res.status(400).json({
       message: "Invalid email",
       success: false,
       status: 400
     });
   } 
-
+  
   if (email) {
     const user = await User.findOne({ email });
     if (user) {
@@ -33,7 +34,8 @@ export const userRegister = async(req, res) => {
       });
     }
   } 
-
+  
+  const hashedPassword = bcrypt.hashSync(password, 10);
   const newUser = new User({
     name,
     email,
@@ -44,7 +46,7 @@ export const userRegister = async(req, res) => {
     await newUser.save()
     UserRegmail(req, res);
     return res.status(201).json({
-      message: "Form submitted successfully",
+      message: "User Regiter successfully",
       success: true, 
       status: 201
     })
