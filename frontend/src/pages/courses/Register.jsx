@@ -1,6 +1,6 @@
 import React from 'react'
 import { PageTitle } from '../../components/pageTitle'
-import useRegister from '../../hooks/useRegister.jsx';
+import useRegister from  '../../hooks/courses/useRegister';
 
 function Register() {
   const {

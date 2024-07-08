@@ -55,8 +55,16 @@ export const userRegister = async(req, res) => {
 
 export const userLogin = async(req, res) => {
   const { email, password } = req.body;
-  const user = await User.findOne({ email });
-  if (!user) {
+  const validUser = await User.findOne({ email });
+  if (!email || !password) {
+    return res.status(404).json({
+      message: "Please fill all fields",
+      success: false,
+      status: 404
+    });
+  }
+
+  if(!validUser) {
     return res.status(404).json({
       message: "User not found",
       success: false,
@@ -64,17 +72,10 @@ export const userLogin = async(req, res) => {
     });
   }
 
-  const isMatch = bcrypt.compareSync(password, user.password);
-  if (!isMatch) {
-    return res.status(401).json({
-      message: "Invalid credentials",
-      success: false,
-      status: 401
-    });
-  }
-
-  // Generate JWT token
-  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+  try {
+    // Generate JWT token
+  const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
+  const { password: hashedPassword, ...rest} = validUser._doc;
   const expiryDate = new Date(Date.now() + 3600000);
   res
       .cookie('access_token', token, {httpOnly: true, expires: expiryDate})
@@ -84,8 +85,20 @@ export const userLogin = async(req, res) => {
         success: true,
         status: 200,
         token,
-        expiryDate
-      })
+        expiryDate,
+        user: rest
+      });
+  } catch (error) {
+    console.log(error);
+  }
+  const isMatch = bcrypt.compareSync(password, validUser.password);
+  if (!isMatch) {
+    return res.status(401).json({
+      message: "Invalid credentials",
+      success: false,
+      status: 401
+    });
+  }
 
   // Remember to add middleware to validate JWT token before accessing protected routes
   // add middleware to validate JWT token before accessing protected routes

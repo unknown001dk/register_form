@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { toastError, toastSuccess } from '../utils/Toast';
+import { toastError, toastSuccess } from '../../utils/Toast';
 
 export default function useRegister() {
   const [formData, setFormData] = useState({});
