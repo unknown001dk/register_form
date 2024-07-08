@@ -1,7 +1,7 @@
 import User from '../models/User.model.js';
 import { sendEmail } from './Email.controller.js';
 
-export const Login = async(req, res) => {
+export const userRegister = async(req, res) => {
   const { name, email, phonenumber} = req.body;
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
   const phoneRegex = /^[0-9]{10}$/;
