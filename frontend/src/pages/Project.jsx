@@ -1,8 +1,12 @@
-import React from 'react'
+import Header from "../components/Header"
+import { PageTitle } from "../components/pageTitle"
 
 function project() {
   return (
-    <div>project</div>
+    <>
+    <Header />
+    <PageTitle title='Project' />
+    </>
   )
 }
 

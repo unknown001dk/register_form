@@ -1,8 +1,12 @@
-import React from 'react'
+import Header from "../components/Header"
+import { PageTitle } from "../components/pageTitle"
 
 function Course() {
   return (
-    <div>Course</div>
+    <>
+    <Header />
+    <PageTitle title='Course' />
+    </>
   )
 }
 

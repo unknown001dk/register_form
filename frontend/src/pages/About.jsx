@@ -1,8 +1,12 @@
-import React from 'react'
+import Header from '../components/Header'
+import { PageTitle } from '../components/pageTitle'
 
 function About() {
   return (
-    <div>About</div>
+    <>
+    <Header />
+    <PageTitle title='About' />
+    </>
   )
 }
 
