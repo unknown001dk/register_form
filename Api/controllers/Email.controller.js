@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 import Mailgen from 'mailgen';
 import User from '../models/User.model.js';
 
-export const sendEmail = async(req, res) => {
+export const UserRegmail = async(req, res) => {
   const { email, name } = req.body;
 
   let config = {
@@ -42,6 +42,49 @@ export const sendEmail = async(req, res) => {
   transporter.sendMail(message).then(() => {
     return res.status(201)
   })
+};
+
+export const CourseRegmail = ( req, res ) => {
+  const { email, name } = req.body;
+
+  let config = {
+    service: 'gmail',
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass:  process.env.GMAIL_PASS,
+    }
+  }
+  let transporter = nodemailer.createTransport(config);
+
+  let mailGenerator = new Mailgen({
+    theme: 'default',
+    product: {
+      name: 'NoName Academy',
+      link: 'https://nonametech.info',
+      // logo: Logo,
+    },
+  });
+
+  let response = {
+    body: {
+      name: name,
+      intro: 'Thank you for registering with our courses, We are thrilled to have you as a part of our community. Your registration was successful, and you are now a valued member of our platform.',
+      outro: 'Need help, or have questions? Just reply to this email, we\'d love to help.',
+    },
+  }
+
+  let mail = mailGenerator.generate(response);
+  let message = {
+    from: process.env.GMAIL_USER,
+    to: email,
+    subject: 'Welcome to NoName Academy',
+    html: mail,
+  }
+
+  transporter.sendMail(message).then(() => {
+    return res.status(201)
+  })
+
 };
 
 export const scheduleEmail = async(req, res) => {

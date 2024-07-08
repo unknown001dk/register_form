@@ -1,4 +1,5 @@
 import Course from "../models/Course.model.js";
+import { CourseRegmail } from "./Email.controller.js";
 
 export const courseRegister = async(req, res) => {
 
@@ -46,6 +47,7 @@ export const courseRegister = async(req, res) => {
 
   try {
     await newCourse.save();
+    CourseRegmail(req, res);
     return res.json({
       message: "Course registration successful",
       success: true,

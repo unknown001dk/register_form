@@ -1,7 +1,8 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { sendEmail } from './Email.controller.js';
 import User from '../models/User.model.js';
+import { UserRegmail } from "./Email.controller.js";
+
 
 export const userRegister = async(req, res) => {
   const { name, email, password } = req.body;
@@ -41,7 +42,7 @@ export const userRegister = async(req, res) => {
 
   try {
     await newUser.save()
-    sendEmail(req, res);
+    UserRegmail(req, res);
     return res.status(201).json({
       message: "Form submitted successfully",
       success: true, 
