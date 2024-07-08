@@ -1,26 +1,16 @@
-import { Register, Home, About, Course, Project } from './pages/inc.jsx';
-// import Error from './utils/Error.jsx';
-import { Error } from './utils/inc.jsx';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import SuccessForm from './pages/SuccessForm.jsx';
+import {  RouterProvider } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import Header from './components/Header.jsx';
+import router from './routes/Routes.jsx';
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
       <ToastContainer />
-      <Routes>
-        <Route path='/' element={<Home />}/>
-        <Route path='/register' element={<Register />}/>
-        <Route path='/about' element={<About />}/>
-        <Route path='/course' element={<Course />}/>
-        <Route path='/project' element={<Project />}/>
-        <Route path='/success-form' element={<SuccessForm />}/>
-        <Route path='/*' element={<Error />}/>
-      </Routes>
-    </BrowserRouter>
+      <Header />
+      <RouterProvider router={router} />
+    </>
   )
 }
 

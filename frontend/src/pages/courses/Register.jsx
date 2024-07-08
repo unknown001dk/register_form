@@ -1,6 +1,6 @@
-import useRegister from '../hooks/useRegister';
+import useRegister from '../../hooks/useRegister';
 import BounceLoader from 'react-spinners/BounceLoader'
-import { PageTitle } from '../components/pageTitle';
+import { PageTitle } from '../../components/pageTitle';
 
 function Register() {
   const {
