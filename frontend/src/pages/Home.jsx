@@ -3,7 +3,9 @@ import Button from '../components/Buttons/Button'
 
 function Home() {
   return (
-    <div>Hello</div>
+    <>
+    hello world
+    </>
   )
 }
 
