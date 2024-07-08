@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <ToastContainer />
-      <Header />
+      {/* <Header /> */}
       <RouterProvider router={router} />
     </>
   )

@@ -1,9 +1,10 @@
 import React from 'react'
-import Button from '../components/Buttons/Button'
+import Header from '../components/Header'
 
 function Home() {
   return (
     <>
+    <Header />
     hello world
     </>
   )
