@@ -4,7 +4,9 @@ import Button from './Buttons/Button'
 function Header() {
   return (
     <>
-    <h1>header</h1>
+    <nav>
+      
+    </nav>
     </>
   )
 }

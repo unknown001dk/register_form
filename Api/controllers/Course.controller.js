@@ -3,11 +3,11 @@ import { CourseRegmail } from "./Email.controller.js";
 
 export const courseRegister = async(req, res) => {
 
-  const { name, email, phonenumber, language } = req.body;
+  const { name, email, phonenumber} = req.body;
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
   const phoneRegex = /^[0-9]{10}$/;
 
-  if (!name ||!email ||!phonenumber ||!language) {
+  if (!name ||!email ||!phonenumber) {
     return res.status(400).json({
       message: "All fields are required",
       success: false,
@@ -42,7 +42,7 @@ export const courseRegister = async(req, res) => {
     name,
     email,
     phonenumber,
-    language
+    // language
   });
 
   try {

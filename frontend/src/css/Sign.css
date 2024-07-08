@@ -5,8 +5,8 @@
   margin: 0;
   box-sizing: border-box;
 }
-form {
-  height: 100;
+.form {
+  height: 100%;
   width: 400px;
   background-color: rgba(255, 255, 255, 0.03);
   position: absolute;
@@ -18,15 +18,17 @@ form {
   border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
   padding: 50px 35px;
+  overflow: auto;
+  margin-right: 10px;
 }
-form * {
+.form * {
   font-family: "Poppins", sans-serif;
   color: #0f0f0f;
   letter-spacing: 0.5px;
   outline: none;
   border: none;
 }
-form h3 {
+.form .form-header {
   font-size: 40px;
   font-weight: 700;
   line-height: 42px;
@@ -34,14 +36,14 @@ form h3 {
   color: #000;
 }
 
-label {
+.label {
   display: block;
   margin-top: 30px;
   font-size: 16px;
   font-weight: 500;
   color: #000;
 }
-input {
+.input-box {
   display: block;
   height: 35px;
   width: 100%;
@@ -59,10 +61,10 @@ input {
   color: #e1e1e1;
 }
 
-input:hover{
+.input-box:hover{
   outline: 2px solid rgba(240, 157, 157, 0.067);
 }
-button {
+.btn {
   margin-top: 30px;
   width: 100%;
   background-color: #ffffff;
@@ -74,7 +76,7 @@ button {
   cursor: pointer;
 }
 
-button {
+.btn {
   background: #e1abab;
   color: #000;
   font-weight: 600;
@@ -87,7 +89,7 @@ button {
   transition: 0.3s ease;
 }
 
-button:hover {
+.btn:hover {
   color: #f1abab;
   background-color: #c29393;
   border-color: #d2a6a6;
@@ -103,12 +105,29 @@ button:hover {
   text-decoration: none;
 }
 
+.select-values{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  margin-top: 20px;
+  color: #0f0f0f;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 300;
+  color: #000;
+  outline: 2px solid #0001;
+  width: 100;
+}
+
 @media screen and (max-width: 600px) {
-  form {
-    height: 540px;
+  .form {
+    height: 100vh;
     width: 330px;
     background-color: rgba(255, 255, 255, 0.03);
     position: absolute;
+    overflow: auto;
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;

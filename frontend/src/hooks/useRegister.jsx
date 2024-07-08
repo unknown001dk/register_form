@@ -20,13 +20,14 @@ export default function useRegister() {
       ...formData,
       [e.target.id]: e.target.value
     })
+
   }  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await fetch('/api/users/create' ,{
+      const res = await fetch('/api/courses/register' ,{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

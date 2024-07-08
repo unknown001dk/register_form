@@ -3,6 +3,6 @@ import { courseRegister } from '../controllers/Course.controller.js';
 
 const courseRoutes = express.Router();
 
-courseRoutes.post('/', courseRegister);
+courseRoutes.post('/register', courseRegister);
 
 export default courseRoutes;
