@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 form {
-  height: 530px;
+  height: 100;
   width: 400px;
   background-color: rgba(255, 255, 255, 0.03);
   position: absolute;
@@ -52,13 +52,15 @@ input {
   font-size: 14px;
   font-weight: 300;
   color: #000;
+  outline: 2px solid #0001;
+
 }
 ::placeholder {
   color: #e1e1e1;
 }
 
 input:hover{
-  outline: 2px solid #0001;
+  outline: 2px solid rgba(240, 157, 157, 0.067);
 }
 button {
   margin-top: 30px;
@@ -87,8 +89,8 @@ button {
 
 button:hover {
   color: #f1abab;
-  background: #c29393;
-  border-color: #fff;
+  background-color: #c29393;
+  border-color: #d2a6a6;
   background: rgba(255, 255, 255, 0.15);
 }
 .register {

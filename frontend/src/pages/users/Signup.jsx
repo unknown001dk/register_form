@@ -1,4 +1,4 @@
-import React from 'react'
+import { Link } from 'react-router-dom';
 
 function Signup() {
   return (
@@ -13,10 +13,11 @@ function Signup() {
 
         <label htmlFor="password">Password</label>
         <input type="password" name='password' id='password' placeholder='Enter your password' />
-
+        <Link to='/signup'>
         <button>Signup</button>
+        </Link>
         <div className='register'>
-          <p>Do not have an Account? <a href='#'>Signin</a></p>
+          <p>Do not have an Account? <a href='/signin'>Signin</a></p>
         </div>
       </form>
       <div className='bubbles'>
