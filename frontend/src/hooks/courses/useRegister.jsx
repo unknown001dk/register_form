@@ -20,8 +20,12 @@ export default function useRegister() {
       ...formData,
       [e.target.id]: e.target.value
     })
+  } 
 
-  }  
+  const onChangeItems = (e) => {
+    const { language, value } = e.target;
+    setFormData({...formData, [language]: value });
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,5 +56,5 @@ export default function useRegister() {
     }
   } 
 
-  return { formData, handleChange, handleSubmit, loading, loader }
+  return { formData, handleChange, handleSubmit, onChangeItems, loading, loader }
 }

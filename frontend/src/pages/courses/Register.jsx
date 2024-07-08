@@ -3,9 +3,7 @@ import { PageTitle } from '../../components/pageTitle'
 import useRegister from  '../../hooks/courses/useRegister';
 
 function Register() {
-  const {
-    handleChange, handleSubmit, loading
-  } = useRegister();
+  const { handleChange, handleSubmit, onChangeItems, loading } = useRegister();
 
   return (
     <div>
@@ -25,12 +23,12 @@ function Register() {
         <label className='label' htmlFor="age">Age</label>
         <input onChange={handleChange} className='input-box' type="text" name='age' id='age' placeholder='Enter your Age' />
 
-        {/* <label htmlFor="language" onChange={handleChange}>Course</label>
-        <select className='select-values' name="language" id="language">
-          <option defaultValue></option>
-          <option value="c">C Programming Basics</option>
-          <option value="frontend">Frontend Basics</option>
-        </select> */}
+        <label htmlFor="language">Course</label>
+        <select className='select-values' onChange={handleChange} name="language" id="language">
+          <option value='1' defaultValue selected hidden>Enter anything</option>
+          <option value="c" onChange={onChangeItems}>C Programming Basics</option>
+          <option value="frontend" onChange={onChangeItems}>Frontend Basics</option>
+        </select>
 
         <button className='btn' type='submit' disabled={loading}>{loading ? 'Loading...' : 'Register'}</button>
       </form>
