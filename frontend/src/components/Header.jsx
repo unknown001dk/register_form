@@ -8,11 +8,11 @@ function Header() {
           <label htmlFor="check" className="checkbtn">
             =
           </label>
-          <label className="logo"><Link to='/'>Noname Academy</Link></label>
+          <label className="logo"><Link to='/'>NoName Academy</Link></label>
           <ul>
-            <Link to='/course'><li>Course</li></Link>
-            <Link to='/project'><li>Project</li></Link>
-            <Link to='/about'><li>About</li></Link>
+            <Link to='/under-develop'><li>Course</li></Link>
+            <Link to='/under-develop'><li>Project</li></Link>
+            <Link to='/under-develop'><li>About</li></Link>
             
           </ul>
           <Link to='/signin'>

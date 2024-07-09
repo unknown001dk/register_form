@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { Register, Home, About, Course, Project, Signin, Signup } from '../pages/inc.jsx';
 import SuccessForm from '../pages/SuccessForm.jsx';
 import { Error } from "../utils/inc.jsx";
+import Underdevelop from "../components/Underdevelop.jsx";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
   {
     path: '/signup',
     element: <Signup />,
+  },
+  {
+    path: '/under-develop',
+    element: <Underdevelop />
   }
 ])
 

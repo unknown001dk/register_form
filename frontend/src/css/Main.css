@@ -48,8 +48,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 10px 10px;
   background-color: #f7e9e9;
+  overflow: auto;
 }
 
 .btn-1{
@@ -119,7 +120,7 @@ ul li a:hover {
 
 ul {
   position: fixed;
-  top: 80px;
+  top: 67px;
   right: -100%;
   background-color: #b4f0ec;
   width: 100%;
@@ -177,5 +178,25 @@ ul li a {
 }
 
 .container {
-  /* margin-top: 30px; */
+  margin-top: 30px;
+}
+.container .font-18 {
+  font-size: 18px;
+  font-family: "Helvetica Neue", sans-serif;
+}
+.text-center {
+  text-align: center;
+}
+.container-header{
+  font-size: 35px;
+  font-family: "Helvetica Neue", sans-serif;
+}
+.image{
+  width: 500px;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  object-fit: contain;
 }
