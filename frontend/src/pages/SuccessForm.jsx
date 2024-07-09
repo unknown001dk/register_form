@@ -18,7 +18,7 @@ function SuccessForm() {
               <p className="text-gray-600 my-2">Thank you for completing your submission.</p>
               <p> Have a great day!  </p>
               <div className="py-10 text-center">
-                  <Link to='/' className="px-12 bg-gray-600 hover:bg-gray-500 rounded-lg text-white font-semibold py-3">
+                  <Link to='/under-develop' className="px-12 bg-gray-600 hover:bg-gray-500 rounded-lg text-white font-semibold py-3">
                       GO BACK 
                   </Link>
               </div>
@@ -27,7 +27,6 @@ function SuccessForm() {
       </div>
     </div>
     </>
-
   )
 }
 

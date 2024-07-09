@@ -3,11 +3,11 @@ import { CourseRegmail } from "./Email.controller.js";
 
 export const courseRegister = async(req, res) => {
 
-  const { name, email, phonenumber, language} = req.body;
+  const { name, email, age, phonenumber, language} = req.body;
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
   const phoneRegex = /^[0-9]{10}$/;
 
-  if (!name ||!email ||!phonenumber || !language) {
+  if (!name ||!email ||!phonenumber || !language || !age) {
     return res.status(400).json({
       message: "All fields are required",
       success: false,
@@ -15,7 +15,7 @@ export const courseRegister = async(req, res) => {
     });
   } else if (!emailRegex.test(email)) {
     return res.status(400).json({
-      message: "Invalid email",
+      message: "Invalid email address",
       success: false,
       status: 400
     });
@@ -37,10 +37,18 @@ export const courseRegister = async(req, res) => {
       });
     }
   }
+  if ( age <= 15 ) {
+    return res.status(400).json({
+      message: "Age should be greater than 15",
+      success: false,
+      status: 400
+    });
+  }
 
   const newCourse = new Course({
     name,
     email,
+    age,
     phonenumber,
     language
   });
@@ -49,7 +57,7 @@ export const courseRegister = async(req, res) => {
     await newCourse.save();
     CourseRegmail(req, res);
     return res.json({
-      message: "Course registration successfully",
+      message: "Course registeration successfully",
       success: true,
       status: 200
     });  
